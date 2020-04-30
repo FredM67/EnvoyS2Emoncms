@@ -5,7 +5,7 @@ Purpose of these files is a full integration of the Enphase EnvoyS-Metered multi
 This includes:
 - configuration file for the EnvoyS and Emoncms settings
 - python script to read the EnvoyS data and send them to Emoncms
-- create of all feeds in Emoncms
+- Emoncms device templates
 
 It has been tested with:
 - an **Envoy-S-Metered-EU** multiphase with firmware **5.0.34**.
@@ -14,7 +14,7 @@ It has been tested with:
 ## Prerequisites
 
 ### Emoncms
-Please see https://emoncms.org/ for details
+Please see https://emoncms.org/ for details.
 
 ### Python3
 On Debian based system:
@@ -30,7 +30,7 @@ pip3 install --upgrade pip
 ## Install on Debian based systems
 
 ### Clone the repository ###
-Navigate to some location like your home directory or */var/tmp*
+Navigate to some location like your home directory or */var/tmp*.
 ```sh
 # Clone the repository
 git clone -b master https://github.com/FredM67/EnvoyS2Emoncms.git
@@ -46,7 +46,7 @@ sudo chmod +x /usr/local/bin/EnvoyS2EmoncmsWatchdog.sh
 ```
 
 ### Configuration file ###
-Install the configuration file, rename it and modify it accordingly to your system by setting the fields marked with **< ... >**
+Install the configuration file, rename it and modify it accordingly to your system by setting the fields marked with **< ... >**.
 ```sh
 sudo mkdir /etc/Enphase
 sudo cp EnvoyS2Emoncms_default.cfg /etc/Enphase/EnvoyS2Emoncms.cfg
@@ -56,15 +56,15 @@ At this point, if you want to check if everything is working properly, you can r
 ```sh
 sudo /usr/local/bin/EnvoyS2Emoncms.py
 ```
-You should see new inputs in your emoncms
+You should see new inputs in your emoncms.
 
 ### Some system stuff ###
-Configure log rotation
+Configure log rotation:
 ```sh
 sudo cp EnvoyS2Emoncms.logrotate /etc/logrotate.d/EnvoyS2Emoncms
 ```
 
-Add a crontab for the watchdog
+Add a crontab for the watchdog:
 ```sh
 sudo crontab -e
 ```
@@ -78,8 +78,8 @@ After that, the system will start automatically the python script within 1-2 min
 In your emoncms, you should see new inputs under the node id set in the config file.
 
 ## Emoncms templates ##
-For those with a local emoncms, you can add 2 templates. They helps the user to create feeds, configure them, ... automatically.
-For further details about that, please see https://github.com/emoncms/emoncms and https://github.com/emoncms/device
+For those with a local emoncms, you can add 2 templates. They help the user to create feeds, configure them, ... automatically.
+For further details about that, please see https://github.com/emoncms/emoncms and https://github.com/emoncms/device.
 ```sh
 # deploy the template with general data
 cp EnvoyS.json /var/www/emoncms/Modules/device/data/EnvoyS.json
