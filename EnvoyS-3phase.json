@@ -685,13 +685,6 @@
         "unit": "W"
       },
       {
-        "name": "net_L1_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
         "name": "net_L2",
         "type": "DataType::REALTIME",
         "engine": "Engine::PHPFINA",
@@ -699,25 +692,11 @@
         "unit": "W"
       },
       {
-        "name": "net_L2_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
         "name": "net_L3",
         "type": "DataType::REALTIME",
         "engine": "Engine::PHPFINA",
         "interval": "10",
         "unit": "W"
-      },
-      {
-        "name": "net_L3_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
       }
     ]
   }
