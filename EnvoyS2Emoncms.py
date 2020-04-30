@@ -3,7 +3,7 @@
 # This utility send a EnvoyS (Enphase) data to emoncms
 #  
 # coded by:
-# author : Frederic Metrich
+# auteur : Frederic Metrich
 # Email : Frederic.Metrich@Live.COM 
 version = "v2.00"
 
@@ -11,6 +11,7 @@ version = "v2.00"
 import configparser
 import datetime
 import logging
+import logging.handlers
 import json
 import urllib.request
 import time
@@ -22,11 +23,20 @@ LogFileLastMessage   = "/tmp/EnvoyS2Emoncms.log"
 WatchdogFile         = "/tmp/EnvoyS2Emoncms_Watchdog"
 
 # Set logging params
-logging.basicConfig(filename=LogFile,format='%(asctime)s PID(%(process)d) %(levelname)s: %(message)s',level=logging.DEBUG)
+def log_setup():
+  log_handler = logging.handlers.WatchedFileHandler(LogFile)
+  formatter = logging.Formatter('%(asctime)s PID(%(process)d) %(levelname)s: %(message)s')
+  formatter.converter = time.gmtime  # if you want UTC time
+  log_handler.setFormatter(formatter)
+  logger = logging.getLogger()
+  logger.addHandler(log_handler)
+  logger.setLevel(logging.DEBUG)
 
 ###############################################################################################################
 # Procedures 
 ###############################################################################################################
+
+log_setup()
 
 logging.info("****** Starting EnvoyS2Emoncms.py ******")
 
@@ -95,7 +105,7 @@ def ProceedData():
   DataJson_all['prod_' + 'whToday'] = data_all['production'][1]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['prod_' + envoy_keys[data]] = data_all['production'][1][envoy_keys[data]]
-  # for 3-phase details, comment out if you don't need it
+# for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['prod_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['production'][1]['lines'][phase][envoy_keys[data]]
@@ -104,7 +114,7 @@ def ProceedData():
   DataJson_all['cons_' + 'whToday'] = data_all['consumption'][0]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['cons_' + envoy_keys[data]] = data_all['consumption'][0][envoy_keys[data]]
-  # for 3-phase details, comment out if you don't need it
+# for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['cons_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][0]['lines'][phase][envoy_keys[data]]
@@ -114,7 +124,7 @@ def ProceedData():
   # DataJson_all['cons_' + 'whToday'] = data_all['consumption'][1]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['net_' + envoy_keys[data]] = data_all['consumption'][1][envoy_keys[data]]
-  # for 3-phase details, comment out if you don't need it
+# for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['net_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][1]['lines'][phase][envoy_keys[data]]
