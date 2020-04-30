@@ -105,7 +105,7 @@ def ProceedData():
   DataJson_all['prod_' + 'whToday'] = data_all['production'][1]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['prod_' + envoy_keys[data]] = data_all['production'][1][envoy_keys[data]]
-# for 3-phase details, comment out if you don't need it
+  # for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['prod_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['production'][1]['lines'][phase][envoy_keys[data]]
@@ -114,7 +114,7 @@ def ProceedData():
   DataJson_all['cons_' + 'whToday'] = data_all['consumption'][0]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['cons_' + envoy_keys[data]] = data_all['consumption'][0][envoy_keys[data]]
-# for 3-phase details, comment out if you don't need it
+  # for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['cons_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][0]['lines'][phase][envoy_keys[data]]
@@ -124,7 +124,7 @@ def ProceedData():
   # DataJson_all['cons_' + 'whToday'] = data_all['consumption'][1]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['net_' + envoy_keys[data]] = data_all['consumption'][1][envoy_keys[data]]
-# for 3-phase details, comment out if you don't need it
+  # for 3-phase details, comment out if you don't need it
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['net_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][1]['lines'][phase][envoy_keys[data]]
