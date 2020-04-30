@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# This utility send a EnvoyS (Enphase) data to emoncms
+# This utility sends EnvoyS (Enphase) data to emoncms
 #  
 # coded by:
 # auteur : Frederic Metrich
