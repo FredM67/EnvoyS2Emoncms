@@ -11,6 +11,22 @@ It has been tested with:
 - an **Envoy-S-Metered-EU** multiphase with firmware **5.0.34**.
 - emoncms **v10.2.1** installed locally on a Debian **10.3** x64.
 
+***
+## Contents
+- [EnvoyS2Emoncms](#envoys2emoncms)
+  - [Contents](#contents)
+  - [Prerequisites](#prerequisites)
+    - [Emoncms](#emoncms)
+    - [Python3](#python3)
+  - [Install on Debian based systems](#install-on-debian-based-systems)
+    - [Clone the repository](#clone-the-repository)
+    - [Scripts](#scripts)
+    - [Configuration file](#configuration-file)
+    - [Some system stuff](#some-system-stuff)
+  - [Emoncms templates](#emoncms-templates)
+
+***
+
 ## Prerequisites
 
 ### Emoncms
@@ -29,13 +45,13 @@ pip3 install --upgrade pip
 
 ## Install on Debian based systems
 
-### Clone the repository ###
+### Clone the repository
 Navigate to some location like your home directory or */var/tmp*.
 ```sh
 # Clone the repository
 git clone -b master https://github.com/FredM67/EnvoyS2Emoncms.git
 ```
-### Scripts ###
+### Scripts
 ```sh
 cd EnvoyS2Emoncms
 sudo cp EnvoyS2Emoncms.py /usr/local/bin/EnvoyS2Emoncms.py
@@ -45,7 +61,7 @@ sudo cp EnvoyS2EmoncmsWatchdog.sh /usr/local/bin/EnvoyS2EmoncmsWatchdog.sh
 sudo chmod +x /usr/local/bin/EnvoyS2EmoncmsWatchdog.sh
 ```
 
-### Configuration file ###
+### Configuration file
 Install the configuration file, rename it and modify it accordingly to your system by setting the fields marked with **< ... >**.
 ```sh
 sudo mkdir /etc/Enphase
@@ -58,7 +74,7 @@ sudo /usr/local/bin/EnvoyS2Emoncms.py
 ```
 You should see new inputs in your emoncms.
 
-### Some system stuff ###
+### Some system stuff
 Configure log rotation:
 ```sh
 sudo cp EnvoyS2Emoncms.logrotate /etc/logrotate.d/EnvoyS2Emoncms
@@ -77,7 +93,7 @@ After that, the system will start automatically the python script within 1-2 min
 
 In your emoncms, you should see new inputs under the node id set in the config file.
 
-## Emoncms templates ##
+## Emoncms templates
 For those with a local emoncms, you can add 2 templates. They help the user to create feeds, configure them, ... automatically.
 For further details about that, please see https://github.com/emoncms/emoncms and https://github.com/emoncms/device.
 ```sh
