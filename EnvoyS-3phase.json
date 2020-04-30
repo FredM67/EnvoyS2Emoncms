@@ -304,12 +304,6 @@
             }
           },
           {
-            "process": "reset2zero",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
             "process": "allowpositive",
             "arguments": {
               "type": "ProcessArg::NONE"
@@ -353,12 +347,6 @@
             "arguments": {
               "type": "ProcessArg::FEEDID",
               "value": "net_L1"
-            }
-          },
-          {
-            "process": "reset2zero",
-            "arguments": {
-              "type": "ProcessArg::NONE"
             }
           },
           {
@@ -408,12 +396,6 @@
             }
           },
           {
-            "process": "reset2zero",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
             "process": "allowpositive",
             "arguments": {
               "type": "ProcessArg::NONE"
@@ -457,12 +439,6 @@
             "arguments": {
               "type": "ProcessArg::FEEDID",
               "value": "net_L3"
-            }
-          },
-          {
-            "process": "reset2zero",
-            "arguments": {
-              "type": "ProcessArg::NONE"
             }
           },
           {
