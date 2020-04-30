@@ -37,11 +37,11 @@ Please see [Emoncms](https://emoncms.org/) for details.
 On Debian based system:
 ```sh
 # Install python3
-apt-get install python3
-apt-get -y install python3-pip
+sudo apt-get install python3
+sudo apt-get -y install python3-pip
 
 # Update pip
-pip3 install --upgrade pip
+sudo pip3 install --upgrade pip
 ```
 
 ## Install on Debian based systems
