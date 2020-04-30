@@ -30,7 +30,7 @@ It has been tested with:
 ## Prerequisites
 
 ### Emoncms
-Please see https://emoncms.org/ for details.
+Please see [Emoncms](https://emoncms.org/) for details.
 
 ### Python3
 On Debian based system:
@@ -95,7 +95,7 @@ In your emoncms, you should see new inputs under the node id set in the config f
 
 ## Emoncms templates
 For those with a local emoncms, you can add 2 templates. They help the user to create feeds, configure them, ... automatically.
-For further details about that, please see https://github.com/emoncms/emoncms and https://github.com/emoncms/device.
+For further details about that, please see [Emoncms Documentation](https://github.com/emoncms/emoncms) and [Emoncms Device module](https://github.com/emoncms/device).
 ```sh
 # deploy the template with general data
 cp EnvoyS.json /var/www/emoncms/Modules/device/data/EnvoyS.json
