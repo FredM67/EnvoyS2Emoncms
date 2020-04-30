@@ -8,6 +8,7 @@ This includes:
 - Emoncms device templates
 
 It has been tested with:
+- Python **3.7.3**
 - an **Envoy-S-Metered-EU** multiphase with firmware **5.0.34**.
 - emoncms **v10.2.1** installed locally on a Debian **10.3** x64.
 
@@ -68,7 +69,7 @@ sudo mkdir /etc/Enphase
 sudo cp EnvoyS2Emoncms_default.cfg /etc/Enphase/EnvoyS2Emoncms.cfg
 ```
 
-At this point, if you want to check if everything is working properly, you can run the script by hand like this:
+At this point, if you want to check if everything is working properly, you can run the script by hand like this (stop it with `Ctrl-C`):
 ```sh
 sudo /usr/local/bin/EnvoyS2Emoncms.py
 ```
