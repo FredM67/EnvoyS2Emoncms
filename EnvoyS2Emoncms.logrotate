@@ -1,0 +1,5 @@
+/var/log/EnvoyS2Emoncms_Watchdog.log /var/log/EnvoyS2Emoncms.log {
+        daily
+        rotate 7
+        compress
+}

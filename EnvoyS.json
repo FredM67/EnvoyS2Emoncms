@@ -1,0 +1,183 @@
+{
+  "name": "Envoy-S-Metered",
+  "category": "OpenEnergyMonitor",
+  "group": "Enphase",
+  "description": "Envoy-S-Metered template",
+  "inputs": [
+    {
+      "name": "cons_wNow",
+      "description": "House consumption",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use"
+          }
+        }
+      ]
+    },
+    {
+      "name": "cons_whLifetime",
+      "description": "House consumption",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "prod_wNow",
+      "description": "Solar generation",
+      "processList": [
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar"
+          }
+        }
+      ]
+    },
+    {
+      "name": "prod_whLifetime",
+      "description": "Solar generation",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_wNow",
+      "description": "Grid import/export",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "net"
+          }
+        },
+        {
+          "process": "reset2zero",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_whLifetime",
+      "description": "Grid consumption",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_kwh"
+          }
+        }
+      ]
+    }
+  ],
+  "feeds": [
+    {
+      "name": "use",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "use_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "solar",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "solar_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "import",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "import_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "net",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    }
+  ]
+}
