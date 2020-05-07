@@ -5,7 +5,7 @@
 # coded by:
 # auteur : Frederic Metrich
 # Email : Frederic.Metrich@Live.COM 
-version = "v2.00"
+version = "v2.01"
 
 # if errors during executing this scrip make sure you installed phyton and the required modules/libraries
 import configparser
@@ -129,7 +129,7 @@ def ProceedData():
     for data in range(len(envoy_keys)):
       DataJson_all['net_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][1]['lines'][phase][envoy_keys[data]]
   
-  url_all = emon_protocol + emon_host + emon_url + "time=" + str(data_all['production'][1]['readingTime']) + "&node=" + emon_node_all + "&apikey=" + emon_privateKey + "&json=" + str( json.dumps(DataJson_all, separators=(',', ':')))
+  url_all = emon_protocol + emon_host + emon_url + "time=" + str(data_all['production'][1]['readingTime']) + "&node=" + emon_node_all + "&apikey=" + emon_privateKey + "&fulljson=" + json.dumps(DataJson_all, separators=(',', ':'))
 
   HTTPresult_all = urllib.request.urlopen(url_all)
   if HTTPresult_all.getcode() == 200:
