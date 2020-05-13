@@ -1,678 +1,678 @@
 {
-    "name": "Envoy-S-Metered multiphase",
-    "category": "OpenEnergyMonitor",
-    "group": "Enphase",
-    "description": "Envoy-S-Metered multiphase template",
-    "inputs": [
-      {
-        "name": "cons_wNow",
-        "description": "House consumption",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use"
-            }
+  "name": "Envoy-S-Metered multiphase",
+  "category": "OpenEnergyMonitor",
+  "group": "Enphase",
+  "description": "Envoy-S-Metered multiphase template",
+  "inputs": [
+    {
+      "name": "cons_wNow",
+      "description": "House consumption",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use"
           }
-        ]
-      },
-      {
-        "name": "cons_whLifetime",
-        "description": "House consumption",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_kwh"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_whLifetime",
+      "description": "House consumption",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "cons_L1_wNow",
-        "description": "House consumption L1",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L1"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_kwh"
           }
-        ]
-      },
-      {
-        "name": "cons_L1_whLifetime",
-        "description": "House consumption L1",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L1_kwh"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L1_wNow",
+      "description": "House consumption L1",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L1"
           }
-        ]
-      },
-      {
-        "name": "cons_L2_wNow",
-        "description": "House consumption L2",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L2"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L1_whLifetime",
+      "description": "House consumption L1",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "cons_L2_whLifetime",
-        "description": "House consumption L2",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L2_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L1_kwh"
           }
-        ]
-      },
-      {
-        "name": "cons_L3_wNow",
-        "description": "House consumption L3",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L3"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L2_wNow",
+      "description": "House consumption L2",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L2"
           }
-        ]
-      },
-      {
-        "name": "cons_L3_whLifetime",
-        "description": "House consumption L3",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "use_L3_kwh"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L2_whLifetime",
+      "description": "House consumption L2",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "prod_wNow",
-        "description": "Solar generation",
-        "processList": [
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L2_kwh"
           }
-        ]
-      },
-      {
-        "name": "prod_whLifetime",
-        "description": "Solar generation",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_kwh"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L3_wNow",
+      "description": "House consumption L3",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L3"
           }
-        ]
-      },
-      {
-        "name": "prod_L1_wNow",
-        "description": "Solar generation L1",
-        "processList": [
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L1"
-            }
+        }
+      ]
+    },
+    {
+      "name": "cons_L3_whLifetime",
+      "description": "House consumption L3",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "prod_L1_whLifetime",
-        "description": "Solar generation L1",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L1_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "use_L3_kwh"
           }
-        ]
-      },
-      {
-        "name": "prod_L2_wNow",
-        "description": "Solar generation L2",
-        "processList": [
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L2"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_wNow",
+      "description": "Solar generation",
+      "processList": [
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
           }
-        ]
-      },
-      {
-        "name": "prod_L2_whLifetime",
-        "description": "Solar generation L2",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L2_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar"
           }
-        ]
-      },
-      {
-        "name": "prod_L3_wNow",
-        "description": "Solar generation L3",
-        "processList": [
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L3"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_whLifetime",
+      "description": "Solar generation",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "prod_L3_whLifetime",
-        "description": "Solar generation L3",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "solar_L3_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_kwh"
           }
-        ]
-      },
-      {
-        "name": "net_wNow",
-        "description": "Grid import/export",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "net"
-            }
-          },
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_L1_wNow",
+      "description": "Solar generation L1",
+      "processList": [
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
           }
-        ]
-      },
-      {
-        "name": "net_whLifetime",
-        "description": "Grid consumption",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L1"
           }
-        ]
-      },
-      {
-        "name": "net_L1_wNow",
-        "description": "Grid import/export L1",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "net_L1"
-            }
-          },
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L1"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_L1_whLifetime",
+      "description": "Solar generation L1",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "net_L1_whLifetime",
-        "description": "Grid consumption L1",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L1_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L1_kwh"
           }
-        ]
-      },
-      {
-        "name": "net_L2_wNow",
-        "description": "Grid import/export L2",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "net_L2"
-            }
-          },
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L2"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_L2_wNow",
+      "description": "Solar generation L2",
+      "processList": [
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
           }
-        ]
-      },
-      {
-        "name": "net_L2_whLifetime",
-        "description": "Grid consumption L2",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L2_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L2"
           }
-        ]
-      },
-      {
-        "name": "net_L3_wNow",
-        "description": "Grid import/export L3",
-        "processList": [
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "net_L3"
-            }
-          },
-          {
-            "process": "allowpositive",
-            "arguments": {
-              "type": "ProcessArg::NONE"
-            }
-          },
-          {
-            "process": "log_to_feed",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L3"
-            }
+        }
+      ]
+    },
+    {
+      "name": "prod_L2_whLifetime",
+      "description": "Solar generation L2",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
           }
-        ]
-      },
-      {
-        "name": "net_L3_whLifetime",
-        "description": "Grid consumption L3",
-        "processList": [
-          {
-            "process": "scale",
-            "arguments": {
-              "type": "ProcessArg::VALUE",
-              "value": 0.001
-            }
-          },
-          {
-            "process": "log_to_feed_join",
-            "arguments": {
-              "type": "ProcessArg::FEEDID",
-              "value": "import_L3_kwh"
-            }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L2_kwh"
           }
-        ]
-      }
-    ],
-    "feeds": [
-      {
-        "name": "use",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "use_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "use_L1",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "use_L1_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "use_L2",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "use_L2_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "use_L3",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "use_L3_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "solar",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "solar_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "solar_L1",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "solar_L1_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "solar_L2",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "solar_L2_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "solar_L3",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "solar_L3_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "import",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "import_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "import_L1",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "import_L1_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "import_L2",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "import_L2_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "import_L3",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "import_L3_kwh",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "kWh"
-      },
-      {
-        "name": "net",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "net_L1",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "net_L2",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      },
-      {
-        "name": "net_L3",
-        "type": "DataType::REALTIME",
-        "engine": "Engine::PHPFINA",
-        "interval": "10",
-        "unit": "W"
-      }
-    ]
-  }
+        }
+      ]
+    },
+    {
+      "name": "prod_L3_wNow",
+      "description": "Solar generation L3",
+      "processList": [
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "prod_L3_whLifetime",
+      "description": "Solar generation L3",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "solar_L3_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_wNow",
+      "description": "Grid import/export",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "net"
+          }
+        },
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_whLifetime",
+      "description": "Grid consumption",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L1_wNow",
+      "description": "Grid import/export L1",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "net_L1"
+          }
+        },
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L1_whLifetime",
+      "description": "Grid consumption L1",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L1_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L2_wNow",
+      "description": "Grid import/export L2",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "net_L2"
+          }
+        },
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L2_whLifetime",
+      "description": "Grid consumption L2",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L2_kwh"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L3_wNow",
+      "description": "Grid import/export L3",
+      "processList": [
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "net_L3"
+          }
+        },
+        {
+          "process": "allowpositive",
+          "arguments": {
+            "type": "ProcessArg::NONE"
+          }
+        },
+        {
+          "process": "log_to_feed",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L3"
+          }
+        }
+      ]
+    },
+    {
+      "name": "net_L3_whLifetime",
+      "description": "Grid consumption L3",
+      "processList": [
+        {
+          "process": "scale",
+          "arguments": {
+            "type": "ProcessArg::VALUE",
+            "value": 0.001
+          }
+        },
+        {
+          "process": "log_to_feed_join",
+          "arguments": {
+            "type": "ProcessArg::FEEDID",
+            "value": "import_L3_kwh"
+          }
+        }
+      ]
+    }
+  ],
+  "feeds": [
+    {
+      "name": "use",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "use_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "use_L1",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "use_L1_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "use_L2",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "use_L2_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "use_L3",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "use_L3_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "solar",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "solar_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "solar_L1",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "solar_L1_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "solar_L2",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "solar_L2_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "solar_L3",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "solar_L3_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "import",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "import_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "import_L1",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "import_L1_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "import_L2",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "import_L2_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "import_L3",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "import_L3_kwh",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "kWh"
+    },
+    {
+      "name": "net",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "net_L1",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "net_L2",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    },
+    {
+      "name": "net_L3",
+      "type": "DataType::REALTIME",
+      "engine": "Engine::PHPFINA",
+      "interval": "10",
+      "unit": "W"
+    }
+  ]
+}
