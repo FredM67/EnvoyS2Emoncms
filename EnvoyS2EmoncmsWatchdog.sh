@@ -10,10 +10,10 @@ FILE="/tmp/EnvoyS2Emoncms_Watchdog"
 LOGFILE="/var/log/EnvoyS2Emoncms_Watchdog.log"
 PROCESS="python3 /usr/local/bin/EnvoyS2Emoncms.py"
 TimeNow=$(date +%s)
-ProcessID=$(ps -ef|grep -v grep|grep "$PROCESS"| cut -c 6-14)
+ProcessID=$(ps -ef|grep -v grep|grep "$PROCESS"| awk '{print $2}')
 
 WriteLog() {
-        echo "$(date) $1" >> $LOGFILE
+        echo "$(date -u +'%F %T') $1" >> $LOGFILE
 }
 
 if [ -f "$FILE" ];
@@ -37,11 +37,12 @@ then
          kill -9 "$ProcessID"
          $PROCESS 2>&1 >/dev/null &
       fi
+
    fi
 
 else
    # File does not exist, start it if no process is running otherwise kill and start it
-      WriteLog "Watchdog file does nog exist" 
+      WriteLog "Watchdog file does not exist" 
       if [ -z "$ProcessID" ];
       then
          # No process found so start it

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 
-# This utility sends EnvoyS (Enphase) data to emoncms
-#  
+# This utility send a EnvoyS (Enphase) data to emoncms
+#
 # coded by:
 # auteur : Frederic Metrich
-# Email : Frederic.Metrich@Live.COM 
-version = "v2.01"
+# Email : Frederic.Metrich@Live.COM
+version = "v3.00"
 
 # if errors during executing this scrip make sure you installed phyton and the required modules/libraries
 import configparser
-import datetime
 import logging
 import logging.handlers
 import json
 import urllib.request
 import time
+import ssl
 
 DataJson_all  = { }
 
@@ -33,7 +33,7 @@ def log_setup():
   logger.setLevel(logging.DEBUG)
 
 ###############################################################################################################
-# Procedures 
+# Procedures
 ###############################################################################################################
 
 log_setup()
@@ -43,15 +43,16 @@ logging.info("****** Starting EnvoyS2Emoncms.py ******")
 Config = configparser.ConfigParser()
 Config.read("/etc/Enphase/EnvoyS2Emoncms.cfg")
 
-emon_privateKey = Config['emoncms']['privatekey'] 
-emon_node_all   = Config['emoncms']['node_all'] 
-emon_host       = Config['emoncms']['host'] 
-emon_protocol   = Config['emoncms']['protocol'] 
-emon_url        = Config['emoncms']['url'] 
+emon_privateKey = Config['emoncms']['privatekey']
+emon_node_all   = Config['emoncms']['node_all']
+emon_host       = Config['emoncms']['host']
+emon_protocol   = Config['emoncms']['protocol']
+emon_url        = Config['emoncms']['url']
 
-envoy_url_all   = Config['envoy']['url_all'] 
-envoy_host      = Config['envoy']['host'] 
-envoy_protocol  = Config['envoy']['protocol'] 
+envoy_url_all   = Config['envoy']['url_all']
+envoy_host      = Config['envoy']['host']
+envoy_protocol  = Config['envoy']['protocol']
+envoy_token     = Config['envoy']['token']
 
 logging.info('Configuration settings:')
 logging.info('emoncms/privatekey: ' + emon_privateKey)
@@ -71,12 +72,21 @@ logging.info('***********************')
 
 # Construct urls 
 url_envoy_all  = envoy_protocol + envoy_host + envoy_url_all
+
+myssl = ssl.create_default_context()
+myssl.check_hostname=False
+myssl.verify_mode=ssl.CERT_NONE
+
+req = urllib.request.Request(url=url_envoy_all, method='GET')
+req.add_header("Authorization", "Bearer " + envoy_token)
+req.add_header("Accept", "application/json")
+
 envoy_keys = ['wNow', 'whLifetime']
 
 def ProceedData():
   try:
     # Fetch page with ENVOY detailed data
-    the_page_all = urllib.request.urlopen(url_envoy_all, timeout = 5).read()
+    the_page_all = urllib.request.urlopen(req, context = myssl).read()
 
     if len(the_page_all) < 4300:
       logging.warning("Page size: " + str(len(the_page_all)) + " \'" + str(the_page_all) + "\'")
@@ -99,9 +109,9 @@ def ProceedData():
     logging.error('Received data: \'' + str(the_page_all) + '\'')
     return
 
-  DataJson_all.clear() 
+  DataJson_all.clear()
 
-  # "measurementType": "production" 
+  # "measurementType": "production"
   DataJson_all['prod_' + 'whToday'] = data_all['production'][1]['whToday']
   for data in range(len(envoy_keys)):
     DataJson_all['prod_' + envoy_keys[data]] = data_all['production'][1][envoy_keys[data]]
@@ -109,7 +119,7 @@ def ProceedData():
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['prod_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['production'][1]['lines'][phase][envoy_keys[data]]
-  
+
   # "measurementType": "total-consumption"
   DataJson_all['cons_' + 'whToday'] = data_all['consumption'][0]['whToday']
   for data in range(len(envoy_keys)):
@@ -128,7 +138,7 @@ def ProceedData():
   for phase in range(3):
     for data in range(len(envoy_keys)):
       DataJson_all['net_L' + str(phase + 1) + '_' + envoy_keys[data]] = data_all['consumption'][1]['lines'][phase][envoy_keys[data]]
-  
+
   url_all = emon_protocol + emon_host + emon_url + "time=" + str(data_all['production'][1]['readingTime']) + "&node=" + emon_node_all + "&apikey=" + emon_privateKey + "&fulljson=" + json.dumps(DataJson_all, separators=(',', ':'))
 
   HTTPresult_all = urllib.request.urlopen(url_all)
@@ -141,7 +151,9 @@ def ProceedData():
 # Do forever ....
 while True:
   try:
-    # Write time to watchdog file, as a sign of life  
+    time.sleep(5)
+
+    # Write time to watchdog file, as a sign of life
     f3=open(WatchdogFile, "w")
     timestamp = int(time.time())
     f3.write (str(timestamp))
@@ -149,7 +161,5 @@ while True:
 
     ProceedData()
 
-    time.sleep(5)
-
   except Exception as e:
-    logging.error('Caught exception: ' + str(e))  
+    logging.error('Caught exception: ' + str(e))
